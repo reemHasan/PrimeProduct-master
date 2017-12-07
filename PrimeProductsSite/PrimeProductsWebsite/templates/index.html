@@ -1,0 +1,186 @@
+<!doctype html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Introducing Lollipop, a sweet new take on Android.">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0">
+    <title>PrimeProducts</title>
+
+    <!-- Page styles -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.0/material.min.css">
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    {% load static %}
+    <link rel="stylesheet" href=" {% static "css/styles.css" %}?v=00005" type="text/css">
+    <link rel="stylesheet" href=" {% static "css/bootstrap.css" %}?v=00005" type="text/css">
+    <link href='//fonts.googleapis.com/css?family=Abel' rel='stylesheet'>
+    <link href='//fonts.googleapis.com/css?family=Amaranth' >
+    
+<style>
+#view-source {
+  position: fixed;
+  display: block;
+  right: 0;
+  bottom: 0;
+  margin-right: 40px;
+  margin-bottom: 40px;
+  z-index: 900;
+}
+</style>
+    <script>
+    $(document).ready(function() {
+          $('#search_btn').click(function(){
+            //console.log($("#search-field-1").val());
+            if($("#search-field-1").val() == '')
+            {
+              console.log("empty");
+
+            }else{
+            $.ajax({
+                  headers: {
+                      'Content-Type':'application/json',
+                      'X-CSRFToken': getCookie('csrftoken')
+                  },
+                  url: 'search_query',
+                  type: 'POST',
+                  data: JSON.stringify({'query': $("#search-field-1").val(), 'trier': $("#selectCommission").val(), 'prix_min': $("#prix_min").val(), 'prix_max': $("#prix_max").val()}),
+                  success: function(json) {
+                    alert('success');
+                    //window.location('product_details');
+                  },
+                  error: function(){
+                    alert('fail')
+                  }
+              })
+            }         
+        });
+    });
+
+function getCookie(name) {
+    var cookieValue = null;
+    if (document.cookie && document.cookie != '') {
+        var cookies = document.cookie.split(';');
+        for (var i = 0; i < cookies.length; i++) {
+            var cookie = jQuery.trim(cookies[i]);
+            if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+    </script>
+  </head>
+<body>
+    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
+
+      <div class="android-header mdl-layout__header mdl-layout__header--waterfall">
+        <div class="mdl-layout__header-row">
+          <span class="android-title mdl-layout-title">
+            <img class="android-logo-image" src="/static/images/prime-logo.png">
+          </span>
+          <div class="android-header-spacer mdl-layout-spacer"></div>
+          <div class="android-navigation-container">
+            <nav class="android-navigation mdl-navigation">
+              <nav class="android-navigation mdl-navigation">
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="accueil">Accueil</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="categories_listing">Categories</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="contact">Contact</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="connexion">Connexion</a>
+            </nav>
+            </nav>
+          </div>
+          <span class="android-mobile-title mdl-layout-title">
+            <img class="android-logo-image" src="/static/images/prime-logo.png">
+          </span>
+          <button class="android-more-button mdl-button mdl-js-button mdl-button--icon mdl-js-ripple-effect" id="more-button">
+            <i class="material-icons">more_vert</i>
+          </button>
+          <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right mdl-js-ripple-effect" for="more-button">
+            <li class="mdl-menu__item"><a href="connexion">Connexion</a></li>
+            <li disabled class="mdl-menu__item"><a href="logout">Déconexion</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="android-drawer mdl-layout__drawer">
+        <span>
+          <img src="/static/images/alphabet/A.png" style="width:240px">
+        </span>
+        <nav class="mdl-navigation">
+          <a class="mdl-navigation__link" href="profile">Mon profil</a>
+          <a class="mdl-navigation__link" href="favourite_list">Ma liste des favoris</a>
+          <a class="mdl-navigation__link" href="my_comments">Mes commentaires</a>
+          <a class="mdl-navigation__link" href="contact_form">Contacter le site</a>
+        </nav>
+      </div>
+
+      <div class="android-content mdl-layout__content">
+        <a name="top"></a>
+        <div class="android-be-together-section mdl-typography--text-center">
+          <div class="logo-font android-slogan">Recherchez votre produit, pas le notre.</div>
+          <div class="logo-font android-sub-slogan">Bienvenue sur votre site.</div>
+          <br>
+          <br>
+          
+<form class="form-horizontal">
+<fieldset>
+<!-- Prepended text-->
+<div class="form-group inline">
+  <input class="mdl-textfield__input inline" type="text" placeholder="nom du produit" id="search-field-1" style="width:350px; float:left;">
+  <div class="col-md-4 inline" style="float:left;">
+    <div class="input-group">
+      <input id="prix_min" name="prependedtext" class="form-control" placeholder="prix min" type="text" required="" style="width:100px;">
+      <span class="input-group-addon"> </span>
+      <input id="prix_max" name="prependedtext" class="form-control" placeholder="prix max" type="text" required="" style="width:100px;">
+
+      <select id="selectCommission" name="selectCommission" class="form-control" style="width:120px; margin-left:20px;height: 40px;">
+        <option value="0">Trier par</option>
+        <option value="C">Prix croissant</option>
+        <option value="D">Prix décroissant</option>
+        <option value="N">Notes utilisateurs</option>
+      </select>
+
+      <label class="mdl-button mdl-js-button mdl-button--icon" data-upgraded=",MaterialButton" id="search_btn" style="margin-left:20px;margin-top: 3px;">
+        <a href="result_page"><i class="material-icons">search</i></a>
+      </label>
+    </div>
+  </div>
+</div>
+
+</fieldset>
+</form>
+        </div>
+
+        <footer class="android-footer mdl-mega-footer">
+          <div class="mdl-mega-footer--top-section">
+      
+            <div class="mdl-mega-footer--right-section">
+              <a class="mdl-typography--font-light" href="#top">
+                Back to Top
+                <i class="material-icons">expand_less</i>
+              </a>
+            </div>
+          </div>
+
+          <div class="mdl-mega-footer--middle-section">
+            <p class="mdl-typography--font-light">Aria, Reem, Badr & Mehdi © 2017 Nancy</p>
+            <p class="mdl-typography--font-light">PrimeProducts website.</p>
+          </div>
+
+        </footer>
+      </div>
+    </div>
+    
+    <script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
+    {% block footer %}
+        <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <script type="text/javascript" src="{% static 'js/materialize.js' %}"></script>
+    {% endblock %}
+  </body>
+</html>
