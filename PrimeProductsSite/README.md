@@ -1,52 +1,41 @@
-# PrimeProducts 
-Here is a sample of our project, replace the folder "PrimeProducts" we created last time or simply :
-  > * Download the project
-  > * Move to the repository with command line (cd)
-  > * Type "python3 manage.py runserver"
-  > * Open your browser to 127.0.0.1:8000
+
+The implemented functions in views.py are :
+  1- def categories_listing : to list all category in DB and the number of products in each one
+  2- def search_query : to show the searching text 'entered by the user' in result page 
+  3- def result_page: show the resulting product corresponding to search query (without giving the cheapest product and not take care of all possible cases of search query)
+  4-def product_details :give information about product (without review ,I'll work on it ..)
   
-Don't forget to watch/star/fork the repository !
+ 
+The keywords for searching until now are :
+legumes pot bœuf
+lait bebe
+COUCHES BABY TAILLE 3
+pizza 4 fromages
 
-# Screenshots
+#To access into admin page and modify DB :
+http://127.0.0.1:8000/admin/
 
-* Main Page View (accueil)
-![Main Page View](https://github.com/mehdibettiche/PrimeProducts/blob/master/Screenshots/1.png)
+userName :admin
+passWord:admin
 
-* Register Page 
-![Main Page View](https://github.com/mehdibettiche/PrimeProducts/blob/master/Screenshots/4.png)
+#Notice :I've used django 2.1
 
-* Login Page
-![Main Page View](https://github.com/mehdibettiche/PrimeProducts/blob/master/Screenshots/3.png)
+For every modivication in model.py we have to alter Django about it by :
+1-to let Django know that we have some changes in our model.
+ python3 manage.py makemigrations PrimeProductsWebsite
 
-* Search result page view 
-![Left slider view](https://github.com/mehdibettiche/PrimeProducts/blob/master/Screenshots/7.png)
+2-Django	prepared a migration file for us that we now have to apply to our database.
+$ python3 manage.py migrate PrimeProductsWebsite
 
-* Categories listing 
-![Left slider view](https://github.com/mehdibettiche/PrimeProducts/blob/master/Screenshots/2.png)
+#To get into Django' interactive console and try some QuerySet :
+$ python3 manage.py shell
 
-* Contact list View
-![Footer View](https://github.com/mehdibettiche/PrimeProducts/blob/master/Screenshots/14.png)
+>>> from PrimeProductsWebsite.models import Product
 
-* Left slider view (active when a user is logged in)
-![Left slider view](https://github.com/mehdibettiche/PrimeProducts/blob/master/Screenshots/5.png)
+>>> Product.objects.all()
+<QuerySet [<Product: Product object (1)>, <Product: Product object (2)>, <Product: Product object (3)>]>
 
-* Product page view
-![Left slider view](https://github.com/mehdibettiche/PrimeProducts/blob/master/Screenshots/10.png)
+#get one product from Product table
+>>> Product.objects.filter(price='12.71')
+<QuerySet [<Product: Product object (1)>]>
 
-* Product page comments view
-![Left slider view](https://github.com/mehdibettiche/PrimeProducts/blob/master/Screenshots/11.png)
-
-* Top right button View
-![Footer View](https://github.com/mehdibettiche/PrimeProducts/blob/master/Screenshots/6.png)
-
-* User account View
-![Footer View](https://github.com/mehdibettiche/PrimeProducts/blob/master/Screenshots/8.png)
-
-* User favourite list View
-![Footer View](https://github.com/mehdibettiche/PrimeProducts/blob/master/Screenshots/9.png)
-
-* User comments list View
-![Footer View](https://github.com/mehdibettiche/PrimeProducts/blob/master/Screenshots/12.png)
-
-* User contact View
-![Footer View](https://github.com/mehdibettiche/PrimeProducts/blob/master/Screenshots/13.png)
