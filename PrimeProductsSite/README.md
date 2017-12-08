@@ -48,3 +48,10 @@ $ python3 manage.py shell
 >>> Product.objects.filter(price='12.71')
 <QuerySet [<Product: Product object (1)>]>
 
+ Work to be done :
+ 
+ 1- Script for take care of all possible cases of searching query
+ 
+ 2- singup/singIn 
+ 
+ 3- show user profile photo depending on the first letter in user's name
