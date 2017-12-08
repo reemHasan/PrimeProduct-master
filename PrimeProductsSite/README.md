@@ -1,8 +1,15 @@
 
 The implemented functions in views.py are :
+
   1- def categories_listing : to list all category in DB and the number of products in each one
+  
+  
   2- def search_query : to show the searching text 'entered by the user' in result page 
+  
+  
   3- def result_page: show the resulting product corresponding to search query (without giving the cheapest product and not take care of all possible cases of search query)
+  
+  
   4-def product_details :give information about product (without review ,I'll work on it ..)
   
  
@@ -21,6 +28,8 @@ passWord:admin
 #Notice :I've used django 2.1
 
 For every modivication in model.py we have to alter Django about it by :
+
+
 1-to let Django know that we have some changes in our model.
  python3 manage.py makemigrations PrimeProductsWebsite
 
